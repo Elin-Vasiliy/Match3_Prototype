@@ -7,7 +7,6 @@ public class Tile : MonoBehaviour
     public int column;
     public int row;
     public bool isDelete = false;
-    private float time = 0f;
 
     private Board board;
     private FindMatch findMatch;
@@ -25,8 +24,12 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        isDelete = true;
-        CheckAdjacentTiles(gameObject.GetComponent<Tile>(), gameObject);
+        if (!board.isMatch)
+        {
+            isDelete = true;
+            CheckAdjacentTiles(gameObject.GetComponent<Tile>(), gameObject);
+        }
+        
     }
 
     private void Check()
@@ -101,35 +104,4 @@ public class Tile : MonoBehaviour
         findMatch.AddList(tile);
         DeleteTile(gameObject);
     }
-
-    public void FindMatchTileAll()
-    {
-        for (int x = 0; x <= column; x++)
-        {
-            for (int y = 0; y <= row; y++)
-            {
-                if (y > 0 && y <= row && board.tileArray[x, y] != null && board.tileArray[x, y - 1] == null)
-                {
-                    FindMatchTile(x, y);
-                }
-            }
-        }
-    }
-
-    private void FindMatchTile(int x, int y)
-    {
-        //Board.isMatch = true;
-        board.tileArray[x, y].transform.position = new Vector2(x, y - 1);
-        board.tileArray[x, y].GetComponent<Tile>().row = y - 1;
-        board.tileArray[x, y - 1] = board.tileArray[x, y];
-        board.tileArray[x, y] = null;
-        //Board.isMatch = false;
-    }
-
-    //private IEnumerator TileMoveDove(float value)
-    //{
-    //    yield return StartCoroutine(TileMoveDove(value));
-    //    //FindMatchTile();
-    //    yield return new WaitForSeconds(value);
-    //}
 }
