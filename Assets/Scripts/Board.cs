@@ -8,14 +8,22 @@ public class Board : MonoBehaviour
     public int xSize, ySize;
     public GameObject[,] tileArray;
     public bool isMatch = false;
+    public bool isBool;
+    private float time = 0f;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //if (isMatch)
-        //{
-        //    StartCoroutine(CreateTile());
-        //}
-        FindMatchTile();
+        if (time < 0)
+        {
+            FindMatchTile();
+            time = 0.5f;
+            isMatch = false;
+        }
+        else
+        {
+            time -= Time.deltaTime;
+        }
+        //StartCoroutine(CreateTile(1.0f));
     }
 
     void Start()
@@ -41,12 +49,10 @@ public class Board : MonoBehaviour
         }
     }
 
-    //private IEnumerator CreateTile()
+    //private IEnumerator CreateTile(float value)
     //{
-
+    //    yield return new WaitForSeconds(value);
     //    FindMatchTile();
-    //    yield return new WaitForSeconds(0.5f);
-    //    isMatch = false;
     //}
 
     public void FindMatchTile()
@@ -55,48 +61,26 @@ public class Board : MonoBehaviour
         {
             for (int y = 0; y < ySize; y++)
             {
-                if (y < ySize - 1 && y > 0)
+                if (y > 0 && y < ySize && tileArray[x, y] != null && tileArray[x, y - 1] == null)
                 {
-                    if (tileArray[x, y + 1] != null && tileArray[x, y] == null)
-                    {
-                        Vector2 temp = new Vector2(x, y);
-                        GameObject newTile = Instantiate(tileArray[x, y + 1], temp, Quaternion.identity);
-                        newTile.transform.parent = transform;
-                        newTile.name = tileArray[x, y + 1].name;
-                        newTile.GetComponent<Tile>().column = x;
-                        newTile.GetComponent<Tile>().row = y;
-                        tileArray[x, y] = newTile;
-                        Destroy(tileArray[x, y + 1]);
-                    }
+                    isMatch = true;
+                    tileArray[x, y].transform.position = new Vector2(x, y - 1);
+                    tileArray[x, y].GetComponent<Tile>().row = y - 1;
+                    tileArray[x, y - 1] = tileArray[x, y];
+                    tileArray[x, y] = null;
                 }
-                else if (y == 0 || y == ySize - 1)
+                else if (y == ySize - 1 && tileArray[x, y] == null)
                 {
-                    if (y == 0)
-                    {
-                        if (tileArray[x, y + 1] != null && tileArray[x, y] == null)
-                        {
-                            Vector2 temp = new Vector2(x, y);
-                            GameObject newTile = Instantiate(tileArray[x, y + 1], temp, Quaternion.identity);
-                            newTile.transform.parent = transform;
-                            newTile.name = tileArray[x, y + 1].name;
-                            newTile.GetComponent<Tile>().column = x;
-                            newTile.GetComponent<Tile>().row = y;
-                            tileArray[x, y] = newTile;
-                            Destroy(tileArray[x, y + 1]);
-                        }
-                    }
-                    if (y == ySize - 1 && tileArray[x, y] == null)
-                    {
-                        int tileToUse = Random.Range(0, tile.Length);
-                        Vector2 temp = new Vector2(x, y);
-                        GameObject newTile = Instantiate(tile[tileToUse], temp, Quaternion.identity);
-                        newTile.transform.parent = transform;
-                        newTile.GetComponent<Tile>().column = x;
-                        newTile.GetComponent<Tile>().row = y;
-                        tileArray[x, y] = newTile;
-                    }
+                    isMatch = true;
+                    int tileToUse = Random.Range(0, tile.Length);
+                    Vector2 temp = new Vector2(x, y);
+                    GameObject newTile = Instantiate(tile[tileToUse], temp, Quaternion.identity);
+                    newTile.transform.parent = transform;
+                    newTile.GetComponent<Tile>().column = x;
+                    newTile.GetComponent<Tile>().row = y;
+                    tileArray[x, y] = newTile;
                 }
             }
-        }
+        }        
     }
 }
