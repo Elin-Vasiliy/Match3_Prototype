@@ -15,19 +15,19 @@ public class Board : MonoBehaviour
     private void FixedUpdate()
     {
         
-        for (int i = 0; i < xSize; i++)
-        {
-            for (int j = 0; j < ySize; j++)
-            {
-                if (tileArray[i, j] == null)
-                {
-                    isMatch = true;
-                    StartCoroutine(CreateTile(0.5f));
-                    isMatch = false;
-                }
-            }
-        }
-        //StartCoroutine(CreateTile(0.5f));
+        //for (int i = 0; i < xSize; i++)
+        //{
+        //    for (int j = 0; j < ySize; j++)
+        //    {
+        //        if (tileArray[i, j] == null)
+        //        {
+        //            isMatch = true;
+        //            StartCoroutine(CreateTile(0.5f));
+        //            isMatch = false;
+        //        }
+        //    }
+        //}
+        CreateTile();
     }
 
     void Start()
@@ -46,20 +46,14 @@ public class Board : MonoBehaviour
                 Vector2 temp = new Vector2(x, y);
                 Tile newTile = Instantiate(tile[tileToUse], temp, Quaternion.identity);
                 newTile.transform.parent = transform;
-                newTile.GetComponent<Tile>().column = x;
-                newTile.GetComponent<Tile>().row = y;
+                newTile.GetComponent<Tile>().Column = x;
+                newTile.GetComponent<Tile>().Row = y;
                 tileArray[x, y] = newTile;
             }
         }
     }
 
-    //private IEnumerator CreateTile(float value)
-    //{
-    //    yield return new WaitForSeconds(value);
-    //    FindMatchTile();
-    //}
-
-    private IEnumerator CreateTile(float value)
+    private void CreateTile()
     {
         while (true)
         {
@@ -77,8 +71,8 @@ public class Board : MonoBehaviour
                         Vector2 temp = new Vector2(x, y);
                         Tile newTile = Instantiate(tile[tileToUse], temp, Quaternion.identity);
                         newTile.transform.parent = transform;
-                        newTile.column = x;
-                        newTile.row = y;
+                        newTile.Column = x;
+                        newTile.Row = y;
                         tileArray[x, y] = newTile;
                     }
                 }
@@ -90,19 +84,24 @@ public class Board : MonoBehaviour
                         if (item == tileArray[xX, y])
                         {
                             tileArray[xX, y].transform.position = new Vector2(xX, y - 1);
-                            tileArray[xX, y].row = y - 1;
+                            tileArray[xX, y].Row = y - 1;
                             tileArray[xX, y - 1] = tileArray[xX, y];
                             tileArray[xX, y] = null;
                         }
                     }
                 }
                 downTile.Clear();
-                yield return new WaitForSeconds(value);
             }
             break;
         }
     }
 }
+
+//private IEnumerator CreateTile(float value)
+//{
+//    yield return new WaitForSeconds(value);
+//    FindMatchTile();
+//}
 
 //    public void FindMatchTile()
 //    {
