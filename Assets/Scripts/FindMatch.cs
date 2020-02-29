@@ -39,19 +39,14 @@ public class FindMatch : MonoBehaviour
             NumberOfClick.numsClick--;
             numberOfClick.ClickToMouse();
         }
-        else if (tiles.Count == 3)
+        else if (tiles.Count == 4)
         {
             NumberOfClick.numsClick++;
             numberOfClick.ClickToMouse();
         }
-        else if (tiles.Count == 4)
-        {
-            NumberOfClick.numsClick += 2;
-            numberOfClick.ClickToMouse();
-        }
         else if (tiles.Count >= 5)
         {
-            NumberOfClick.numsClick += 3;
+            NumberOfClick.numsClick += 2;
             numberOfClick.ClickToMouse();
         }
         tiles.Clear();

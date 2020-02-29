@@ -27,66 +27,66 @@ public class Tile : MonoBehaviour
         if (!board.isMatch)
         {
             isDelete = true;
-            CheckAdjacentTiles(gameObject.GetComponent<Tile>(), gameObject);
+            CheckAdjacentTiles(this, this);
         }
         
     }
 
     private void Check()
     {
-        if (board.tileArray[column, row].GetComponent<Tile>().column < board.xSize - 1 && board.tileArray[column, row].GetComponent<Tile>().column > 0)
+        if (board.tileArray[column, row].column < board.xSize - 1 && board.tileArray[column, row].column > 0)
         {
             if (board.tileArray[column + 1, row] != null && board.tileArray[column + 1, row].tag == this.gameObject.tag && board.tileArray[column + 1, row].GetComponent<Tile>().isDelete != true)
             {
-                CheckAdjacentTiles(board.tileArray[column + 1, row].GetComponent<Tile>(), board.tileArray[column + 1, row]);
+                CheckAdjacentTiles(board.tileArray[column + 1, row], board.tileArray[column + 1, row]);
             }
             if (board.tileArray[column - 1, row] != null && board.tileArray[column - 1, row].tag == this.gameObject.tag && board.tileArray[column - 1, row].GetComponent<Tile>().isDelete != true)
             {
-                CheckAdjacentTiles(board.tileArray[column - 1, row].GetComponent<Tile>(), board.tileArray[column - 1, row]);
+                CheckAdjacentTiles(board.tileArray[column - 1, row], board.tileArray[column - 1, row]);
             }
         }
-        else if (board.tileArray[column, row].GetComponent<Tile>().column == 0 || board.tileArray[column, row].GetComponent<Tile>().column == board.xSize - 1)
+        else if (board.tileArray[column, row].column == 0 || board.tileArray[column, row].column == board.xSize - 1)
         {
-            if (board.tileArray[column, row].GetComponent<Tile>().column == 0)
+            if (board.tileArray[column, row].column == 0)
             {
-                if (board.tileArray[column + 1, row] != null && board.tileArray[column + 1, row].tag == this.gameObject.tag && board.tileArray[column + 1, row].GetComponent<Tile>().isDelete != true)
+                if (board.tileArray[column + 1, row] != null && board.tileArray[column + 1, row].tag == this.gameObject.tag && board.tileArray[column + 1, row].isDelete != true)
                 {
-                    CheckAdjacentTiles(board.tileArray[column + 1, row].GetComponent<Tile>(), board.tileArray[column + 1, row]);
+                    CheckAdjacentTiles(board.tileArray[column + 1, row], board.tileArray[column + 1, row]);
                 }
             }
-            if (board.tileArray[column, row].GetComponent<Tile>().column == board.xSize - 1)
+            if (board.tileArray[column, row].column == board.xSize - 1)
             {
-                if (board.tileArray[column - 1, row] != null && board.tileArray[column - 1, row].tag == this.gameObject.tag && board.tileArray[column - 1, row].GetComponent<Tile>().isDelete != true)
+                if (board.tileArray[column - 1, row] != null && board.tileArray[column - 1, row].tag == this.gameObject.tag && board.tileArray[column - 1, row].isDelete != true)
                 {
-                    CheckAdjacentTiles(board.tileArray[column - 1, row].GetComponent<Tile>(), board.tileArray[column - 1, row]);
+                    CheckAdjacentTiles(board.tileArray[column - 1, row], board.tileArray[column - 1, row]);
                 }
             }
         }
-        if (board.tileArray[column, row].GetComponent<Tile>().row < board.ySize - 1 && board.tileArray[column, row].GetComponent<Tile>().row > 0)
+        if (board.tileArray[column, row].row < board.ySize - 1 && board.tileArray[column, row].row > 0)
         {
-            if (board.tileArray[column, row + 1] != null && board.tileArray[column, row + 1].tag == this.gameObject.tag && board.tileArray[column, row + 1].GetComponent<Tile>().isDelete != true)
+            if (board.tileArray[column, row + 1] != null && board.tileArray[column, row + 1].tag == this.gameObject.tag && board.tileArray[column, row + 1].isDelete != true)
             {
-                CheckAdjacentTiles(board.tileArray[column, row + 1].GetComponent<Tile>(), board.tileArray[column, row + 1]);
+                CheckAdjacentTiles(board.tileArray[column, row + 1], board.tileArray[column, row + 1]);
             }
-            if (board.tileArray[column, row - 1] != null && board.tileArray[column, row - 1].tag == this.gameObject.tag && board.tileArray[column, row - 1].GetComponent<Tile>().isDelete != true)
+            if (board.tileArray[column, row - 1] != null && board.tileArray[column, row - 1].tag == this.gameObject.tag && board.tileArray[column, row - 1].isDelete != true)
             {
-                CheckAdjacentTiles(board.tileArray[column, row - 1].GetComponent<Tile>(), board.tileArray[column, row - 1]);
+                CheckAdjacentTiles(board.tileArray[column, row - 1], board.tileArray[column, row - 1]);
             }
         }
-        else if (board.tileArray[column, row].GetComponent<Tile>().row == 0 || board.tileArray[column, row].GetComponent<Tile>().row == board.ySize - 1)
+        else if (board.tileArray[column, row].row == 0 || board.tileArray[column, row].row == board.ySize - 1)
         {
-            if (board.tileArray[column, row].GetComponent<Tile>().row == 0)
+            if (board.tileArray[column, row].row == 0)
             {
-                if (board.tileArray[column, row + 1] != null && board.tileArray[column, row + 1].tag == this.gameObject.tag && board.tileArray[column, row + 1].GetComponent<Tile>().isDelete != true)
+                if (board.tileArray[column, row + 1] != null && board.tileArray[column, row + 1].tag == this.gameObject.tag && board.tileArray[column, row + 1].isDelete != true)
                 {
-                    CheckAdjacentTiles(board.tileArray[column, row + 1].GetComponent<Tile>(), board.tileArray[column, row + 1]);
+                    CheckAdjacentTiles(board.tileArray[column, row + 1], board.tileArray[column, row + 1]);
                 }
             }
-            if (board.tileArray[column, row].GetComponent<Tile>().row == board.ySize - 1)
+            if (board.tileArray[column, row].row == board.ySize - 1)
             {
-                if (board.tileArray[column, row - 1] != null && board.tileArray[column, row - 1].tag == this.gameObject.tag && board.tileArray[column, row - 1].GetComponent<Tile>().isDelete != true)
+                if (board.tileArray[column, row - 1] != null && board.tileArray[column, row - 1].tag == this.gameObject.tag && board.tileArray[column, row - 1].isDelete != true)
                 {
-                    CheckAdjacentTiles(board.tileArray[column, row - 1].GetComponent<Tile>(), board.tileArray[column, row - 1]);
+                    CheckAdjacentTiles(board.tileArray[column, row - 1], board.tileArray[column, row - 1]);
                 }
             }
         }
@@ -97,11 +97,11 @@ public class Tile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void CheckAdjacentTiles(Tile tile, GameObject gameObject)
+    private void CheckAdjacentTiles(Tile tile, Tile tileDelete)
     {
         tile.isDelete = true;
         tile.Check();
         findMatch.AddList(tile);
-        DeleteTile(gameObject);
+        DeleteTile(tileDelete.gameObject);
     }
 }
