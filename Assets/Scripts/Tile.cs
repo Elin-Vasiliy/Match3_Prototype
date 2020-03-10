@@ -7,8 +7,10 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private int point;
 
-    public bool isDelete = false;    
+    public bool isDelete = false;
+    public Menu PopupMenu;
 
+    private ParticleSystem particle;
     private Board board;
     private FindMatch findMatch;
     private int column;
@@ -42,11 +44,12 @@ public class Tile : MonoBehaviour
     {
         findMatch = FindObjectOfType<FindMatch>();
         board = FindObjectOfType<Board>();
+        PopupMenu = FindObjectOfType<Menu>();
     }
 
     private void OnMouseDown()
     {
-        if (!board.isMatch)
+        if (!board.isMatch && !PopupMenu.isMenu && findMatch.nums > 0)
         {
             isDelete = true;
             CheckAdjacentTiles(this);
@@ -115,6 +118,7 @@ public class Tile : MonoBehaviour
 
     private void DeleteTile(GameObject gameObject)
     {
+        board.Particle.Play();
         Destroy(gameObject);
     }
 

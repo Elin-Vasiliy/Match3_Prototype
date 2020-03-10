@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FindMatch : MonoBehaviour
 {
-    Tile tile = new Tile();
-    List<Tile> tiles = new List<Tile>();
-    public TMP_Text numberOfMoves, scoreText;
-    private int nums = 30;
+    public TMP_Text NumberOfMoves, ScoreText, RecordText;
+    public int nums = 5;
+    public GameObject PopupGameOver;
+
+    private Tile tile = new Tile();
+    private List<Tile> tiles = new List<Tile>();
     private int score = 0;
     private int raisingScore = 1;
+    public int ScoreRecord;
+
+    public int Score { get => score; set => score = value; }
 
     private void Start()
     {
-        numberOfMoves.text = nums.ToString();
-        scoreText.text = score.ToString();
+        NumberOfMoves.text = nums.ToString();
+        ScoreText.text = Score.ToString();
     }
 
     private void Update()
@@ -36,7 +42,7 @@ public class FindMatch : MonoBehaviour
 
     public void Array()
     {
-        if (tiles.Count < 3 && tiles.Count > 0)
+        if(tiles.Count < 3 && tiles.Count > 0)
         {
             nums--;
         }
@@ -44,25 +50,41 @@ public class FindMatch : MonoBehaviour
         {
             nums++;
         }
-        else if (tiles.Count >= 5 && tiles.Count < 7)
+        else if (tiles.Count > 5 && tiles.Count < 8)
         {
             nums += 2;
             raisingScore = 2;
         }
-        else if (tiles.Count >= 7)
+        else if (tiles.Count >= 8)
         {
             nums += 3;
             raisingScore = 3;
         }
-        numberOfMoves.text = nums.ToString();
+        NumberOfMoves.text = nums.ToString();
         foreach (var item in tiles)
         {
-            score += item.Points * raisingScore;
+            Score += item.Points * raisingScore;
         }
-        scoreText.text = score.ToString();
+        ScoreText.text = Score.ToString();
+
         tiles.Clear();
         raisingScore = 1;
+        StartCoroutine(ScoreGame());
     }
 
-    
+    IEnumerator ScoreGame()
+    {
+        if (nums == 0)
+        {
+            yield return new WaitForSeconds(2f);
+            if (score > PlayerPrefs.GetInt("Score"))
+            {
+                PlayerPrefs.SetInt("Score", score);
+                PlayerPrefs.Save();
+                RecordText.gameObject.SetActive(true);
+                RecordText.text = $"New Record: \n{PlayerPrefs.GetInt("Score").ToString()}!";
+            }
+            PopupGameOver.SetActive(true);
+        }
+    }
 }
