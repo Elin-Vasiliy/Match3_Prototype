@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\DeleteTile.cs" />
     <Compile Include="Assets\Scripts\FindMatch.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\PlayBtn.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />

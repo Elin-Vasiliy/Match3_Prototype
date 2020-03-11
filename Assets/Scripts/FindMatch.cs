@@ -20,8 +20,8 @@ public class FindMatch : MonoBehaviour
 
     private void Start()
     {
-        NumberOfMoves.text = nums.ToString();
-        ScoreText.text = Score.ToString();
+        NumberOfMoves.text = $"length of game: {nums}";
+        ScoreText.text = $"Score: {Score}";
     }
 
     private void Update()
@@ -60,12 +60,12 @@ public class FindMatch : MonoBehaviour
             nums += 3;
             raisingScore = 3;
         }
-        NumberOfMoves.text = nums.ToString();
+        NumberOfMoves.text = $"length of game: {nums}";
         foreach (var item in tiles)
         {
             Score += item.Points * raisingScore;
         }
-        ScoreText.text = Score.ToString();
+        ScoreText.text = $"Score: {Score}";
 
         tiles.Clear();
         raisingScore = 1;
