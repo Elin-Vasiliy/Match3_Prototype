@@ -13,7 +13,9 @@ public class Board : MonoBehaviour
     public Tile[,] tileArray;
     public GameObject PopupMenu;
     public bool isPopupMenu = false;
-        
+    public float TimeTileReduction = 0.05f;
+
+
     private List<Tile> downTile = new List<Tile>();
 
     private void FixedUpdate()

@@ -51,7 +51,7 @@ public class Tile : MonoBehaviour
     {
         if (!board.isMatch && !PopupMenu.isMenu && findMatch.nums > 0)
         {
-            isDelete = true;
+            board.isMatch = true;
             CheckAdjacentTiles(this);
         }
     }
@@ -116,10 +116,20 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private void DeleteTile(GameObject gameObject)
+    IEnumerator DeleteTile(GameObject gameObject, float value)
     {
-        board.Particle.Play();
+        var temp = new WaitForSeconds(value);
+        yield return temp;
+        gameObject.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f);
+        yield return temp;
+        gameObject.GetComponent<Transform>().localScale = new Vector3(0.6f, 0.6f);
+        yield return temp;
+        gameObject.GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f);
+        yield return temp;
+        gameObject.GetComponent<Transform>().localScale = new Vector3(0.2f, 0.2f);
+        yield return temp;
         Destroy(gameObject);
+        board.isMatch = false;
     }
 
     private void CheckAdjacentTiles(Tile tile)
@@ -127,6 +137,6 @@ public class Tile : MonoBehaviour
         tile.isDelete = true;
         tile.Check();
         findMatch.AddList(tile);
-        DeleteTile(tile.gameObject);
+        StartCoroutine(DeleteTile(tile.gameObject, board.TimeTileReduction));
     }
 }

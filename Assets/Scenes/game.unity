@@ -1130,6 +1130,7 @@ MonoBehaviour:
   isMatch: 0
   PopupMenu: {fileID: 64257160}
   isPopupMenu: 0
+  TimeTileReduction: 0.06
 --- !u!1 &2058080700
 GameObject:
   m_ObjectHideFlags: 0
