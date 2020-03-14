@@ -20,7 +20,7 @@ public class FindMatch : MonoBehaviour
 
     private void Start()
     {
-        NumberOfMoves.text = $"length of game: {nums}";
+        NumberOfMoves.text = $"Move count: {nums}";
         ScoreText.text = $"Score: {Score}";
     }
 
@@ -60,7 +60,7 @@ public class FindMatch : MonoBehaviour
             nums += 3;
             raisingScore = 3;
         }
-        NumberOfMoves.text = $"length of game: {nums}";
+        NumberOfMoves.text = $"Move count: {nums}";
         foreach (var item in tiles)
         {
             Score += item.Points * raisingScore;
@@ -69,6 +69,10 @@ public class FindMatch : MonoBehaviour
 
         tiles.Clear();
         raisingScore = 1;
+        if (nums == 0)
+        {
+            AudioManager.instance.PlaySFX(Clip.GameOver);
+        }
         StartCoroutine(ScoreGame());
     }
 
@@ -76,7 +80,7 @@ public class FindMatch : MonoBehaviour
     {
         if (nums == 0)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
             if (score > PlayerPrefs.GetInt("Score"))
             {
                 PlayerPrefs.SetInt("Score", score);

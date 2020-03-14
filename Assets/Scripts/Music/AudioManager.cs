@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Clip { Clear };
+public enum Clip { Clear, GameOver };
 
 public class AudioManager : MonoBehaviour
 {
