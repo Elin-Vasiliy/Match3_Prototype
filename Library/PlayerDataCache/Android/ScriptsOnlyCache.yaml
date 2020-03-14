@@ -1,10 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AudioManager
     - Board
     - FindMatch
+    - MainMenu
     - Menu
-    - PlayBtn
     - ScoreRecord
     - Tile
     Unity.2D.Tilemap.Editor.dll:
@@ -18,7 +19,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
-    - TMPro.TMP_SubMeshUI
     - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -54,6 +54,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -63,25 +67,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9900}
     - Class: 114
-      Script: {instanceID: 10124}
-    - Class: 114
       Script: {instanceID: 10274}
     - Class: 114
       Script: {instanceID: 10302}
     - Class: 114
-      Script: {instanceID: 10678}
+      Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 10854}
+      Script: {instanceID: 10856}
     - Class: 114
-      Script: {instanceID: 10902}
+      Script: {instanceID: 10904}
     - Class: 114
-      Script: {instanceID: 11038}
+      Script: {instanceID: 11040}
     - Class: 114
-      Script: {instanceID: 11094}
+      Script: {instanceID: 11096}
     - Class: 114
-      Script: {instanceID: 11156}
+      Script: {instanceID: 11158}
     - Class: 114
-      Script: {instanceID: 11526}
+      Script: {instanceID: 11348}
+    - Class: 114
+      Script: {instanceID: 11532}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -102,6 +106,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
     Assets/Scenes/menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -119,6 +129,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
     - Class: 104
@@ -134,23 +148,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10324}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10540}
     - Class: 114
-      Script: {instanceID: 10678}
+      Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 10902}
+      Script: {instanceID: 10904}
     - Class: 114
-      Script: {instanceID: 10916}
+      Script: {instanceID: 10918}
     - Class: 114
-      Script: {instanceID: 11094}
+      Script: {instanceID: 11096}
     - Class: 114
-      Script: {instanceID: 11156}
+      Script: {instanceID: 11158}
     - Class: 114
-      Script: {instanceID: 11322}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11526}
+      Script: {instanceID: 11348}
     - Class: 114
-      Script: {instanceID: 22666}
+      Script: {instanceID: 11524}
+    - Class: 114
+      Script: {instanceID: 11532}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -167,10 +183,16 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: 7b1e7c0a1269a13bc77b916ed2dea9bd
+      Hash: 3e7b6f1f9fe3a871283f7411ce64e28b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Board
@@ -392,6 +414,12 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: bd6c2bd55b0ab86d0db1b9c8f5c0ed5e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -536,6 +564,12 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
+  - hash:
+      serializedVersion: 2
       Hash: df434544c9f7b33d1cc7e635b180d279
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -590,6 +624,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: d1c2b41f5e5d0e44fefbb8edfc9351a8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScoreRecord
+  - hash:
+      serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -624,14 +664,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: d1c2b41f5e5d0e44fefbb8edfc9351a8
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ScoreRecord
   platform: 13
   scenePathNames:
   - Assets/Scenes/menu.unity
   - Assets/Scenes/game.unity
-  playerPath: D:/Project_Unity/Match3_Prototip/Buld/Match3_v0.0.2.apk
+  playerPath: D:/Project_Unity/Match3_Prototip/Buld/Match3_v0.0.3.apk

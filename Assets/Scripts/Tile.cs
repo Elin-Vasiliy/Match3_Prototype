@@ -118,6 +118,7 @@ public class Tile : MonoBehaviour
 
     IEnumerator DeleteTile(GameObject gameObject, float value)
     {
+        AudioManager.instance.PlaySFX(Clip.Clear);
         var temp = new WaitForSeconds(value);
         yield return temp;
         gameObject.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f);
