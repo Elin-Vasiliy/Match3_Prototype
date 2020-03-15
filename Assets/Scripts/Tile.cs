@@ -49,7 +49,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!board.isMatch && !PopupMenu.isMenu && findMatch.nums > 0)
+        if (!board.isMatch && !PopupMenu.isMenu && findMatch.MoveCount > 0)
         {
             board.isMatch = true;
             CheckAdjacentTiles(this);

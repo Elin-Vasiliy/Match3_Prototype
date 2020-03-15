@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class FindMatch : MonoBehaviour
 {
     public TMP_Text NumberOfMoves, ScoreText, RecordText;
-    public int nums = 5;
+    public int MoveCount = 5;
     public GameObject PopupGameOver;
 
     private Tile tile = new Tile();
@@ -20,7 +20,7 @@ public class FindMatch : MonoBehaviour
 
     private void Start()
     {
-        NumberOfMoves.text = $"Move count: {nums}";
+        NumberOfMoves.text = $"Move count: {MoveCount}";
         ScoreText.text = $"Score: {Score}";
     }
 
@@ -30,6 +30,7 @@ public class FindMatch : MonoBehaviour
         {
             Array();
         }
+        
     }
 
     public void AddList(Tile tile)
@@ -44,23 +45,27 @@ public class FindMatch : MonoBehaviour
     {
         if(tiles.Count < 3 && tiles.Count > 0)
         {
-            nums--;
+            MoveCount--;
+            if (MoveCount == 0)
+            {
+                AudioManager.instance.PlaySFX(Clip.GameOver);
+            }
         }
         else if (tiles.Count == 4)
         {
-            nums++;
+            MoveCount++;
         }
         else if (tiles.Count > 5 && tiles.Count < 8)
         {
-            nums += 2;
+            MoveCount += 2;
             raisingScore = 2;
         }
         else if (tiles.Count >= 8)
         {
-            nums += 3;
+            MoveCount += 3;
             raisingScore = 3;
         }
-        NumberOfMoves.text = $"Move count: {nums}";
+        NumberOfMoves.text = $"Move count: {MoveCount}";
         foreach (var item in tiles)
         {
             Score += item.Points * raisingScore;
@@ -69,16 +74,13 @@ public class FindMatch : MonoBehaviour
 
         tiles.Clear();
         raisingScore = 1;
-        if (nums == 0)
-        {
-            AudioManager.instance.PlaySFX(Clip.GameOver);
-        }
+        
         StartCoroutine(ScoreGame());
     }
 
     IEnumerator ScoreGame()
     {
-        if (nums == 0)
+        if (MoveCount == 0)
         {
             yield return new WaitForSeconds(1.5f);
             if (score > PlayerPrefs.GetInt("Score"))

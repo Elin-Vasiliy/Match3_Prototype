@@ -9,11 +9,18 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        AudioManager.instance.PlaySFX(Clip.ClickBtn);
+        Invoke("PlayGameLoadScene", 0.5f);
+    }
+
+    public void PlayGameLoadScene()
+    {
         SceneManager.LoadScene(1);
     }
 
     public void Exit()
     {
+        AudioManager.instance.PlaySFX(Clip.ClickBtn);
         PopupExitDialogue.SetActive(true);
     }
 
@@ -24,6 +31,7 @@ public class MainMenu : MonoBehaviour
 
     public void BtnNoExit()
     {
+        AudioManager.instance.PlaySFX(Clip.ClickBtn);
         PopupExitDialogue.SetActive(false);
     }
 }

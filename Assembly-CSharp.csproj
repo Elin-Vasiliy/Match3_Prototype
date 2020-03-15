@@ -70,7 +70,6 @@
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Music\AudioManager.cs" />
     <Compile Include="Assets\Scripts\PlayBtn.cs" />
-    <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\ScoreRecord.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
